@@ -1,3 +1,5 @@
+# Test keepalived
+## Lab
 Tạo máy chủ client (192.168.56.100), lb1 (192.168.56.11), lb2 (192.168.56.12)
 ```
 cd keepalived
@@ -231,3 +233,6 @@ Bật lại keepalived trên server lb2
 08:03:07.501253 IP 192.168.56.12 > vrrp.mcast.net: VRRPv2, Advertisement, vrid 51, prio 101, authtype simple, intvl 1s, length 20
 08:03:08.500892 IP 192.168.56.12 > vrrp.mcast.net: VRRPv2, Advertisement, vrid 51, prio 101, authtype simple, intvl 1s, length 20
 ```
+
+## Tham khảo
+https://viblo.asia/p/trien-khai-dich-vu-high-available-voi-keepalived-haproxy-tren-server-ubuntu-jOxKdqWlzdm
