@@ -1,4 +1,5 @@
 # Test keepalived
+Lý thuyết đủ rồi, kiểm chứng thực tế bằng tcpdump phát, thử các kịch bản và capture network packets
 ## Lab
 Tạo máy chủ client (192.168.56.100), lb1 (192.168.56.11), lb2 (192.168.56.12)
 ```
