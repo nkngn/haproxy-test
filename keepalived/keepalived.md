@@ -235,8 +235,8 @@ Bật lại keepalived trên server lb2
 08:03:08.500892 IP 192.168.56.12 > vrrp.mcast.net: VRRPv2, Advertisement, vrid 51, prio 101, authtype simple, intvl 1s, length 20
 ```
 
-## Notes
-Do VRRP broadcast tại layer 2 bằng multicast nên trường hợp server nhiều dải mạng khác nhau cần đi qua gateway thì phải cấu hình mode unicast
+## Lưu ý về multicast và unicast
+VRRP chỉ hoạt động trong cùng một subnet, không qua được router mặc định do nó gửi vào IP link local 224.0.0.0/24. Khi cấu hình keepalived trên nhiều dải mạng, dùng mode unicast.
 
 ## Tham khảo
 https://viblo.asia/p/trien-khai-dich-vu-high-available-voi-keepalived-haproxy-tren-server-ubuntu-jOxKdqWlzdm
