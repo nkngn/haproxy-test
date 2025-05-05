@@ -1,0 +1,46 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/jammy64"
+
+  # Define IPs
+  lb1_ip = "192.168.56.11"
+  lb2_ip = "192.168.56.12"
+  client_ip = "192.168.56.100"
+
+  # LB1
+  config.vm.define "lb1" do |lb1|
+    lb1.vm.hostname = "lb1"
+    lb1.vm.network "private_network", ip: lb1_ip
+    lb1.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y haproxy keepalived apache2
+      echo "This is LB1 - IP #{lb1_ip}" > /var/www/html/index.html
+      systemctl enable apache2
+      systemctl restart apache2
+    SHELL
+  end
+
+  # LB2
+  config.vm.define "lb2" do |lb2|
+    lb2.vm.hostname = "lb2"
+    lb2.vm.network "private_network", ip: lb2_ip
+    lb2.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y haproxy keepalived apache2
+      echo "This is LB2 - IP #{lb2_ip}" > /var/www/html/index.html
+      systemctl enable apache2
+      systemctl restart apache2
+    SHELL
+  end
+
+  # Client
+  config.vm.define "client" do |client|
+    client.vm.hostname = "client"
+    client.vm.network "private_network", ip: client_ip
+    client.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y curl net-tools
+    SHELL
+  end
+end
